@@ -7,14 +7,21 @@ Original file is located at
     https://colab.research.google.com/drive/1lEovQ5vq-6OB_k7ZLubLL8HKEKyBV4VU
 """
 
-# Install required packages (if needed)
-pip install -q pandas scikit-learn matplotlib seaborn openpyxl
+# Install necessary packages (only if not already installed)
+import subprocess
+import sys
 
-# Import libraries
+packages = ["pandas", "scikit-learn", "matplotlib", "seaborn", "openpyxl"]
+
+for package in packages:
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Now import them
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
