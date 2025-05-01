@@ -158,7 +158,7 @@ if st.button('Predict Delivery Status'):
 with open("app.py", "w") as f:
     f.write(app_code)
 
-!streamlit run app.py & npx localtunnel --port 8501
+streamlit run app.py & npx localtunnel --port 8501
 
 with open("requirements.txt", "w") as f:
     f.write("""streamlit
