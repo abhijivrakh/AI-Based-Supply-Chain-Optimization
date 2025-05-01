@@ -8,7 +8,7 @@ Original file is located at
 """
 
 # Install required packages (if needed)
-!pip install -q pandas scikit-learn matplotlib seaborn openpyxl
+pip install -q pandas scikit-learn matplotlib seaborn openpyxl
 
 # Import libraries
 import pandas as pd
