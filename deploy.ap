@@ -1,0 +1,41 @@
+import streamlit as st
+import pandas as pd
+import joblib
+
+# Load the trained model
+model = joblib.load('model.pkl')
+
+st.title('Supply Chain Delivery Prediction')
+
+# Input features
+warehouse_block = st.selectbox('Warehouse Block', ['A', 'B', 'C', 'D', 'F'])
+mode_of_shipment = st.selectbox('Mode of Shipment', ['Ship', 'Flight', 'Road'])
+product_importance = st.selectbox('Product Importance', ['low', 'medium', 'high'])
+customer_care_calls = st.number_input('Customer Care Calls', min_value=0)
+prior_purchases = st.number_input('Prior Purchases', min_value=0)
+discount_offered = st.number_input('Discount Offered', min_value=0.0)
+weight_in_gms = st.number_input('Weight in grams', min_value=0.0)
+
+# Predict button
+if st.button('Predict'):
+    # Create a DataFrame for the input
+    input_data = pd.DataFrame({
+        'Warehouse_block': [warehouse_block],
+        'Mode_of_Shipment': [mode_of_shipment],
+        'Product_importance': [product_importance],
+        'Customer_care_calls': [customer_care_calls],
+        'Prior_purchases': [prior_purchases],
+        'Discount_offered': [discount_offered],
+        'Weight_in_gms': [weight_in_gms]
+    })
+
+    # Preprocess input_data as per your model's requirements
+
+    # Make prediction
+    prediction = model.predict(input_data)
+
+    # Display result
+    if prediction[0] == 1:
+        st.success('The product will be delivered on time.')
+    else:
+        st.error('The product will be delayed.')
